@@ -1,0 +1,42 @@
+/* Experiência em celular primeiro - Mobile first */
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.cabecalho {
+    overflow: hidden;
+    height: 350px;
+    width: 100%;
+}
+
+.cabecalho__imagem {
+
+}
+
+.conteudo {
+    text-align: center;
+}
+
+.conteudo__titulo {
+    background-color: #BE9B62;
+    display: inline-block;
+    padding: 2px 5px;
+    text-transform: uppercase;
+}
+
+.conteudo__corpo {
+    font-size: 18px;
+    line-height: 1.8em;
+    padding: 50px 25px;
+    text-align: left;
+}
+
+/* Experiência no desktop */
+
+/* Experiência em outros dispositivos - Exemplo: Impressora */

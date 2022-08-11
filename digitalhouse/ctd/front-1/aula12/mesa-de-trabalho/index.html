@@ -1,0 +1,336 @@
+<!--
+    INTEGRANTES DO GRUPO:
+        ELIATÃ PEREIRA
+        TAMIRIS REZENDE
+        ANA PAULA SOUZA
+        DANIEL WELINTON DE SOUSA
+        FREDSON NUNES JUNIOR
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesa de Trabalho - Aula 12</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /*
+         * Box-sizing definido como border-box, sendo assim o conteúdo terá a largura e altura considerando também os paddings.
+         */
+        * {
+            box-sizing: border-box;
+        }
+
+        /*
+         * Define a fonte da página e alternativas, caso não a encontre;
+         * Tamanho da fonte;
+         * Cor do texto.
+         */
+        body {
+            font-size: 18px;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            color: rgb(68, 68, 68);
+        }
+
+        /*
+         * Personalizando a tag <hr> alterando seu tamanho, sua cor;
+         * Adicionando uma largura de 100% para ter certeza de que vai ocupar toda o <bloco> onde estiver inserida.
+         */
+        hr {
+            border: solid 1px lightgray;
+            width: 100%;
+        }
+
+        /*
+         * Define a fonte do <input>, uma vez que ele não segue a fonte do <body>
+         * O tamanho do texto do <input>, uma vez que ele não segue o tamanho do <body>
+         * O tamanho da borda, seu tipo e cor;
+         * O raio da borda;
+         * O padding interno dentro do <input>.
+         */
+        input {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            border: 2px solid lightgray;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        /*
+         * Define o peso (espessura) da fonte no placeholder do <input>
+         * Define a cor do texto do placeholders
+         */
+        input::placeholder {
+            font-weight: 600;
+            color: rgb(170, 170, 170);
+        }
+        
+        /* OBS: Estilizando o checkbox (bônus)
+         *
+         * Remove a aparência do checkbox definida pelo navegador;
+         * O raio da borda para sobescrever o raio definido anteriormente ao <input>;
+         * A margem à direita do checkbox;
+         * O padding interno do quadrado do <input>;
+         * O alinhamento vertical do checkbox para que se alinhe ao seu <label>;
+         */
+        input[type=checkbox] {
+            appearance: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        /*
+         * Ao marcar o checkbox ele fica preenchido com um fundo cinza claro.
+         */
+        input[type=checkbox]:checked {
+            background-color: lightgray;
+        }
+
+        /*
+         * Alinhando as labels verticalmente no meio para o texto ficar ao centro do checkbox;
+         */
+        label {
+            vertical-align: middle;
+        }
+
+        /*
+         * Definindo o peso da fonte da tag <small> usada na descrição dos campos;
+         * Cor do texto;
+         * Display block para que ocupe a largura total da tag em que estiver inserida;
+         * A margem de topo do small.
+         */
+        small {
+            font-weight: 600;
+            color: rgb(174, 174, 174);
+            display: block;
+            margin-top: 5px;
+        }
+
+        /*
+         * Classe adicionada a todos os checkboxes
+         * Tamanho da fonte, margens superior e inferior
+         */
+        .checkbox-item {
+            font-size: 20px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        /*
+         * Classe do conteúdo da página
+         * Largura de 450px e margens laterais em auto para centralizar página na tela;
+         */
+        .conteudo {
+            width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /*
+         * Classe adicionada a todos os itens do filtro, que seriam as opções. Ex.: Localização e Input relacionado;
+         * Margens superiores, inferiores para separar cada opção do filtro;
+         * Paddingns laterais para o conteúdo ficar um pouco afastado do limite da div mãe.
+         */
+        .filtro-item {
+            margin-top: 30px;
+            margin-bottom: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        /* 
+         * Classe adicionada a todos os títulos das opções do filtro: Localização, Ofertas etc.;
+         * Display block para ocupar 100% da largura da div mãe;
+         * Margem inferior para afastar do conteúdo que possa vir à seguir;
+         * Peso da fonte;
+         */
+        .filtro-titulo {
+            display: block;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* 
+         * Classe adicionada a todos os inputs que precisam dividir a mesma linha.
+         * Float left para que mais de um bloco apareça na linha;
+         * Largura do bloco para que outro possa caber no mesma linha;
+         * Margem inferior para afastar do conteúdo que possa vir à seguir;
+         */
+        .input-float {
+            float: left;
+            width: 50%;
+            margin-bottom: 50px;
+        }
+        
+        /* 
+         * Classe adicionada a inputs que devam ocupar toda a largura do bloco onde estão inseridos
+         */
+        .input-largo {
+            width: 100%;
+        }
+
+        /* 
+         * Classe adicionada a inputs que devam ocupar metade da largura do bloco onde estão inseridos
+         */
+        .input-metade {
+            width: 80%;
+        }
+
+        /* 
+         * Classe adicionada para labels que devem ser ocultadas, mas ainda sim visualizadas por buscadores ou leitores de tela
+         * Position absolute: a label se posicionar dentro do input, mas ainda não queremos isso;
+         * Então ao jogar um left: -100px, fazemos com que a <label> se posicione a -100px à direita da tela, ou seja, fora dos limites, ficando não visível
+         */
+        .label-oculta {
+            position: absolute;
+            left: -100px;
+        }
+        
+    </style>
+</head>
+<body>
+    <form action="" method="get">
+        <div class='conteudo'>
+            <div class='filtros'>
+                <div class="filtro-item">
+                    <span class='filtro-titulo'><label for='localizacao'>Localização</label></span>
+                    <input class="input-largo" type="text" id='localizacao' name='localizacao' placeholder='Digite seu estado ou cidade'>
+                </div>
+
+                <hr>
+
+                <div class="filtro-item">
+                    <span class='filtro-titulo'>Ofertas</span>
+                    <div class='checkbox-item'>
+                        <input type="checkbox" id='ofertas' name='ofertas' value='black-feirao'>
+                        <label for='ofertas'>Black Feirão</label>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <div class="filtro-item">
+                    <span class='filtro-titulo'>O que é interessante pra você?</span>
+                    <div class='checkbox-item'>
+                        <input type="checkbox" id='superPreco' name='interesse' value="super-preco">
+                        <label for='superPreco'>Super preço</label>
+                    </div>
+                    
+                    <div class='checkbox-item'>
+                        <input type="checkbox" id='carDelivery' name='interesse' value='car-delivery'>
+                        <label for='carDelivery'>Car Delivery</label>
+                    </div>
+                    
+                    <div class='checkbox-item'>
+                        <input type="checkbox" id='trocaMaisTroco' name='interesse' value='troca-mais-troco'>
+                        <label for='trocaMaisTroco'>Troca + Troco</label>
+                    </div>
+                </div>
+                
+                <div class="filtro-item">
+                    <span class='filtro-titulo'>Carros</span>
+                    <div class='input-float'>
+                        <input type="checkbox" id='novos' name='carros' value='novos'>
+                        <label for='novos'>Novos</label>
+                    </div>
+                    <div class='input-float'>
+                        <input type="checkbox" id='usados' name='carros' value='usados'>
+                        <label for='usados'>Usados</label>
+                    </div>
+                </div>
+
+                <hr>
+            
+                <div class="filtro-item">
+                    <span class='filtro-titulo'>Ano</span>
+
+                    <div class='input-float'>
+                        <label class='label-oculta' for="anoMinino">De</label>
+                        <input class='input-metade' type='number' id='anoMinino' name='anoMinino' placeholder='de'>
+                        <small>ex.: 2014</small>
+                    </div>
+                    <div class='input-float'>
+                        <label class='label-oculta' for="anoMaximo">Até</label>
+                        <input class="input-metade" type='number' id='anoMaximo' name='anoMaximo' placeholder='até'>
+                        <small>ex.: 2019</small>
+                    </div>
+                </div>
+                
+                <hr>
+
+                <div class="filtro-item">
+                    <span class='filtro-titulo'>Preço</span>
+
+                    <div class='input-float'>
+                        <label class='label-oculta' for="precoMinino">De</label>
+                        <input class="input-metade" type='number' id='precoMinino' name='precoMinino' placeholder='de'>
+                        <small>ex.: 20.000</small>
+                    </div>
+
+                    <div class='input-float'>
+                        <label class='label-oculta' for="precoMaximo">Até</label>
+                        <input class="input-metade" type='number' id='precoMaximo' name='precoMaximo' placeholder='até'>
+                        <small>ex.: 50.000</small>
+                    </div>
+                </div>
+
+                <hr>
+                
+                <div class="filtro-item">
+                    <span class='filtro-titulo'>Quilometragem</span>
+
+                    <div class='input-float'>
+                        <label class='label-oculta' for="kmMinino">De</label>
+                        <input class="input-metade" type='number' id='kmMinino' name='kmMinino' placeholder='de'>
+                        <small>ex.: 10.000</small>
+                    </div>
+                    
+                    <div class='input-float'>
+                        <label class='label-oculta' for="kmMaximo">Até</label>
+                        <input class="input-metade" type='number' id='kmMaximo' name='kmMaximo' placeholder='até'>
+                        <small>ex.: 50.000</small>
+                    </div>
+                </div>
+
+                <hr>
+                
+                <div class="filtro-item">
+                
+                    <span class='filtro-titulo'>Vendedor</span>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" name='vendedor' id='acessorios' value='acessorios'>
+                        <label for='acessorios'>Acessórios e Serviços para Autos</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" name='vendedor' id='concessionaria' value='concessionaria'>
+                        <label for='concessionaria'>Concessionária</label>
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" name='vendedor' id='loja' value='loja'>
+                        <label for='loja'>Loja</label>
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" name='vendedor' id='montadora' value='montadora'>
+                        <label for='montadora'>Montadora</label>
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" name='vendedor' id='pessoa-fisica' value='pessoa-fisica'>
+                        <label for='pessoa-fisica'>Pessoa Física</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

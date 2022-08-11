@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Aula3-CoR/Aula3-CoR.iml" filepath="$PROJECT_DIR$/Aula3-CoR/Aula3-CoR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Aula3-Integradora/Aula3-Integradora.iml" filepath="$PROJECT_DIR$/Aula3-Integradora/Aula3-Integradora.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Aula5Ex-proxy-internet/Aula5Ex-proxy-internet.iml" filepath="$PROJECT_DIR$/Aula5Ex-proxy-internet/Aula5Ex-proxy-internet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TemplateIntegradorAluno/TemplateIntegradorAluno.iml" filepath="$PROJECT_DIR$/TemplateIntegradorAluno/TemplateIntegradorAluno.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/backend-1.iml" filepath="$PROJECT_DIR$/.idea/backend-1.iml" />
+    </modules>
+  </component>
+</project>

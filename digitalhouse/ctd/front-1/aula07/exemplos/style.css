@@ -1,0 +1,53 @@
+/* 1. Seleção de tag(s) */
+div {
+    background-color: yellow;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+}
+
+/* Nomes aos elementos que desejamos selecionar */
+
+/* 
+    id #boxe
+    classe .boxe
+*/
+
+/* 2. Seleção pelo nome ID e Class */
+#boxe {
+    background-color: red;
+}
+
+.boxe {
+    background-color: blue !important;
+}
+
+/* 3. Seleção por atributo */
+
+/* Se contém atributo target */
+a[target] {
+    background-color: brown;
+}
+
+/* Qualquer lugar que tenha a palavra chave facebook */
+a[href*="facebook"] {
+    background-color: blue;
+    color: white;
+}
+
+/* No início com # */
+a[href^="#"] {
+    background-color: red;
+    color: white;
+}
+
+/* No fim com .br */
+a[href$=".br"] {
+    background-color: yellow;
+    color: black;
+}
+
+/* Se for igual #boxe */
+a[href="#boxe"] {
+    background-color: pink;
+    color: black;
+}
